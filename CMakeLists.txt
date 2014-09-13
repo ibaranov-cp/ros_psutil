@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   roslint
+  dynamic_reconfigure 
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -44,11 +46,14 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+   FILES
+   Process.msg
+   Network.msg
+   Disk.msg
+   Memory.msg
+   CPU.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -65,10 +70,14 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
+
+generate_dynamic_reconfigure_options(
+   cfg/rosPsutil.cfg
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -82,7 +91,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ros_psutil
-#  CATKIN_DEPENDS rospy std_msgs
+  CATKIN_DEPENDS rospy std_msgs dynamic_reconfigure message_runtime
 #  DEPENDS system_lib
 )
 
