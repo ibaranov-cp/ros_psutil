@@ -1,0 +1,8 @@
+<launch>
+
+    <node
+        pkg="ros_psutil" type="psutilNode.py" name="ros_psutil">
+        <param name="rate" value="10.0"/>
+    </node>
+
+</launch>
